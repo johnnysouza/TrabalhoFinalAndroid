@@ -1,16 +1,41 @@
 package edu.furb.coletalogistica;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 public class ColetorApp extends Activity {
+
+	ListView lista_contatos;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_coletor_app);
+
+		lista_contatos = (ListView) findViewById(R.id.lista_contatos);
+
+		lista_contatos
+				.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+					@Override
+					public void onItemClick(AdapterView<?> parent, View view,
+							int position, long id) {
+						String nome = ((TextView) view).getText().toString();
+						AlertDialog.Builder dialogo = new AlertDialog.Builder(
+								ColetorApp.this);
+						dialogo.setTitle("produto");
+						dialogo.setMessage("Produto selecionado: " + nome);
+						dialogo.setNeutralButton("OK", null);
+						dialogo.show();
+
+					}
+				});
 	}
 
 	@Override
