@@ -7,12 +7,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 public class ColetorApp extends Activity {
 
 	ListView lista_contatos;
+	private String arr[];
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,21 +23,30 @@ public class ColetorApp extends Activity {
 
 		lista_contatos = (ListView) findViewById(R.id.lista_contatos);
 
+		arr = populaArray();
+		lista_contatos.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1 , arr));
 		lista_contatos
 				.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 					@Override
 					public void onItemClick(AdapterView<?> parent, View view,
 							int position, long id) {
-						String nome = ((TextView) view).getText().toString();
-						AlertDialog.Builder dialogo = new AlertDialog.Builder(
-								ColetorApp.this);
-						dialogo.setTitle("produto");
-						dialogo.setMessage("Produto selecionado: " + nome);
-						dialogo.setNeutralButton("OK", null);
-						dialogo.show();
+						String nome = ((TextView) view).getText()
+								.toString();
+								AlertDialog.Builder dialogo = new
+								AlertDialog.Builder(ColetorApp.this);
+								dialogo.setTitle("produto");
+								dialogo.setMessage("Produto selecionado: " + nome);
+								dialogo.setNeutralButton("OK", null);
+								dialogo.show();
 
 					}
 				});
+	}
+	
+	public String[] populaArray(){
+		String listPopulada[] = new String[]{"produto1", "produto2"};
+		
+		return listPopulada;
 	}
 
 	@Override
