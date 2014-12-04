@@ -37,11 +37,7 @@ public class LoginActivity extends Activity implements OnClickListener{
 		String senha = txtSenha.getEditableText().toString();
 
 		if (validadorSenha.validaSenha(usuario, senha)) {
-			Intent i = new Intent(this, RotaColetaActivity.class);
-			i.putExtra("latitudeP1", -26.8986537);
-			i.putExtra("longitudeP1", -49.0847701);
-			i.putExtra("latitudeP2", -26.9057913);
-			i.putExtra("longitudeP2", -49.0867013);
+			Intent i = new Intent(this, ColetorApp.class);
 			startActivity(i);
 			finish();
 		} else {
