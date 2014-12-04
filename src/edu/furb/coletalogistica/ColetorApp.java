@@ -1,7 +1,7 @@
 package edu.furb.coletalogistica;
 
 import android.app.Activity;
-import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class ColetorApp extends Activity {
 
@@ -30,15 +29,13 @@ public class ColetorApp extends Activity {
 					@Override
 					public void onItemClick(AdapterView<?> parent, View view,
 							int position, long id) {
-						String nome = ((TextView) view).getText()
-								.toString();
-								AlertDialog.Builder dialogo = new
-								AlertDialog.Builder(ColetorApp.this);
-								dialogo.setTitle("produto");
-								dialogo.setMessage("Produto selecionado: " + nome);
-								dialogo.setNeutralButton("OK", null);
-								dialogo.show();
-
+						
+						Intent i = new Intent(ColetorApp.this, RotaColetaActivity.class);
+						i.putExtra("latitudeP1", -26.8986537);
+						i.putExtra("longitudeP1", -49.0847701);
+						i.putExtra("latitudeP2", -26.9057913);
+						i.putExtra("longitudeP2", -49.0867013);
+						startActivity(i);
 					}
 				});
 	}
